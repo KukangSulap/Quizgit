@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.barney.quizgit.ApiRetrofit.ApiService;
+import com.barney.quizgit.ApiRetrofit.InstanceRetrofit;
 import com.gmail.farrasabiyyu12.rumahsakit.model.PostPutDelRumsak;
 import com.gmail.farrasabiyyu12.rumahsakit.rest.ApiClient;
 import com.gmail.farrasabiyyu12.rumahsakit.rest.ApiInterface;
@@ -19,7 +21,7 @@ import retrofit2.Response;
 public class EditActivity extends AppCompatActivity {
     EditText edtId, edtNama, edtAlamat;
     Button btUpdate, btDelete, btBack;
-    ApiInterface mApiInterface;
+    InstanceRetrofit mApiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class EditActivity extends AppCompatActivity {
         edtId.setKeyListener(null);
         edtNama.setText(mIntent.getStringExtra("Nama"));
         edtAlamat.setText(mIntent.getStringExtra("Alamat"));
-        mApiInterface = ApiClient.getClient().create(ApiInterface.class);
+        mApiInterface = ApiService.getClient().create(InstanceRetrofit.class);
         btUpdate = (Button) findViewById(R.id.btUpdate2);
         btUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
